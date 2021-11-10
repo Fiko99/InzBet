@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/holo_red_dark">
+
+    <ImageButton
+        android:id="@+id/cancel_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_baseline_close_24"
+        android:src="@drawable/ic_baseline_close_24">
+
+    </ImageButton>
+
+    <ImageButton
+        android:id="@+id/person_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/ic_baseline_person_outline_24"
+        android:src="@drawable/ic_baseline_person_outline_24"></ImageButton>
+
+    <TextView
+        android:id="@+id/text_view_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="InżBet"
+        android:textColor="@color/white"
+        android:textSize="20sp"></TextView>
+</androidx.appcompat.widget.Toolbar>
