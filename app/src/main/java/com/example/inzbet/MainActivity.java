@@ -1,12 +1,11 @@
 package com.example.inzbet;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,11 +22,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
-    FloatingActionButton floatingActionButton;
-    BottomNavigationView bottomNavigationView;
-    ImageButton person;
-    ImageButton cancel;
-    TextView textView;
+    public FloatingActionButton floatingActionButton;
+    public BottomNavigationView bottomNavigationView;
+    public ImageButton person;
+    public ImageButton cancel;
+    public TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,34 +61,39 @@ public class MainActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .setCustomAnimations(R.anim.slide_in_up, R.anim.slide_out_down)
-                        .replace(R.id.fl_wrapper, new NewBetFragment(), "tag")
-                        .addToBackStack(null)
-                        .commit();
-                bottomNavigationView.setVisibility(View.GONE);
-                floatingActionButton.setVisibility(View.GONE);
-                textView.setVisibility(View.GONE);
-                cancel.setVisibility(View.VISIBLE);
+//                Fragment f = new NewBetFragment();
+//                getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
+//                        .replace(R.id.fl_wrapper, f, "tag")
+//                        .addToBackStack(null)
+//                        .commit();
+                openNewBetActivity();
+
+//                bottomNavigationView.setVisibility(View.GONE);
+//                floatingActionButton.setVisibility(View.GONE);
+//                textView.setVisibility(View.GONE);
+//                cancel.setVisibility(View.VISIBLE);
             }
         });
 
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .setCustomAnimations(R.anim.slide_in_down, R.anim.slide_out_up)
-                        .addToBackStack(null)
-                        .commit();
-                cancel.setVisibility(View.GONE);
-                textView.setVisibility(View.VISIBLE);
-                bottomNavigationView.setVisibility(View.VISIBLE);
-                floatingActionButton.setVisibility(View.VISIBLE);
-            }
-        });
+//        cancel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+//                getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .setCustomAnimations( R.anim.slide_in_right, R.anim.slide_out_right)
+//                        .replace(R.id.fl_wrapper, new MatchesFragment())
+//                        .commit();
+//                //getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+//
+//                cancel.setVisibility(View.GONE);
+//                textView.setVisibility(View.VISIBLE);
+//                bottomNavigationView.setVisibility(View.VISIBLE);
+//                floatingActionButton.setVisibility(View.VISIBLE);
+//            }
+//        });
 
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fl_wrapper, new HomeFragment()).commit();
@@ -146,5 +150,12 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
             setComponentsAttributes();
         }
+    }
+
+    public void openNewBetActivity()
+    {
+        Intent intent = new Intent(this, NewBetActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 }
