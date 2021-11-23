@@ -8,16 +8,13 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.inzbet.fragments.AccountFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class NewBetActivity extends AppCompatActivity {
 
-    public FloatingActionButton floatingActionButton;
-    public BottomNavigationView bottomNavigationView;
-    public ImageButton person;
-    public ImageButton cancel;
-    public TextView textView;
+    private ImageButton cancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +26,6 @@ public class NewBetActivity extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .setCustomAnimations(R.anim.slide_in_down, R.anim.slide_out_up, R.anim.slide_in_up, R.anim.slide_out_down)
-//                        .add(R.id.fl_wrapper, new NewBetFragment())
-//                        .addToBackStack(null)
-//                        .commit();
-                //getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 finish();
             }
         });
@@ -50,14 +39,5 @@ public class NewBetActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
-
-    }
-
-    //    public void openMainActivity()
-//    {
-//        Intent intent = new Intent(this, MainActivity.class);
-//        startActivity(intent);
-//        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-//    }
+    public void onBackPressed() { }
 }

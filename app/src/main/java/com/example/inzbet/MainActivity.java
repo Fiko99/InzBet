@@ -16,7 +16,6 @@ import com.example.inzbet.fragments.AccountFragment;
 import com.example.inzbet.fragments.BetsFragment;
 import com.example.inzbet.fragments.HomeFragment;
 import com.example.inzbet.fragments.MatchesFragment;
-import com.example.inzbet.fragments.NewBetFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -27,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
     public ImageButton person;
     public ImageButton cancel;
     public TextView textView;
+    public AccountFragment accountFragment = new AccountFragment();
+    public HomeFragment homeFragment = new HomeFragment();
+    public MatchesFragment matchesFragment = new MatchesFragment();
+    public BetsFragment betsFragment = new BetsFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +47,9 @@ public class MainActivity extends AppCompatActivity {
         person.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getSupportFragmentManager().popBackStack();
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fl_wrapper, new AccountFragment())
+                        .replace(R.id.fl_wrapper, accountFragment)
                         .addToBackStack(null)
                         .commit();
                 floatingActionButton.setVisibility(View.GONE);
@@ -61,42 +63,12 @@ public class MainActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Fragment f = new NewBetFragment();
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
-//                        .replace(R.id.fl_wrapper, f, "tag")
-//                        .addToBackStack(null)
-//                        .commit();
                 openNewBetActivity();
-
-//                bottomNavigationView.setVisibility(View.GONE);
-//                floatingActionButton.setVisibility(View.GONE);
-//                textView.setVisibility(View.GONE);
-//                cancel.setVisibility(View.VISIBLE);
             }
         });
 
-//        cancel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .setCustomAnimations( R.anim.slide_in_right, R.anim.slide_out_right)
-//                        .replace(R.id.fl_wrapper, new MatchesFragment())
-//                        .commit();
-//                //getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-//
-//                cancel.setVisibility(View.GONE);
-//                textView.setVisibility(View.VISIBLE);
-//                bottomNavigationView.setVisibility(View.VISIBLE);
-//                floatingActionButton.setVisibility(View.VISIBLE);
-//            }
-//        });
-
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fl_wrapper, new HomeFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fl_wrapper, homeFragment).commit();
     }
 
     // obsługa BottomNavigationView
@@ -108,15 +80,15 @@ public class MainActivity extends AppCompatActivity {
 
                     switch (item.getItemId()) {
                         case R.id.navigation_home:
-                            selectedFragment = new HomeFragment();
+                            selectedFragment = homeFragment;
                             setComponentsAttributes();
                             break;
                         case R.id.navigation_matches:
-                            selectedFragment = new MatchesFragment();
+                            selectedFragment = matchesFragment;
                             setComponentsAttributes();
                             break;
                         case R.id.navigation_bets:
-                            selectedFragment = new BetsFragment();
+                            selectedFragment = betsFragment;
                             setComponentsAttributes();
                             break;
                     }
