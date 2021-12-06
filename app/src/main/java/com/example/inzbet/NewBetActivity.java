@@ -1,16 +1,10 @@
 package com.example.inzbet;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
-import com.example.inzbet.fragments.AccountFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class NewBetActivity extends AppCompatActivity {
 
@@ -39,5 +33,6 @@ public class NewBetActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() { }
+    public void onBackPressed() {
+    }
 }

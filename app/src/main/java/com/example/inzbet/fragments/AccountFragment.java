@@ -28,8 +28,7 @@ public class AccountFragment extends Fragment {
     private Button deposit, withdraw;
     private TextView accountBalance;
     private SharedViewModel viewModel;
-    //public static final String SHARED_PREFS = "sharedPrefs";
-    float price, previous, subtraction, sum, amount;
+    private float price, previous, subtraction, sum, amount;
 
     @Nullable
     @Override
@@ -40,13 +39,13 @@ public class AccountFragment extends Fragment {
         deposit = view.findViewById(R.id.deposit);
         accountBalance = view.findViewById(R.id.account_balance_value);
         withdraw = view.findViewById(R.id.withdraw);
-        depositValue.setFilters(new InputFilter[] {new DecimalDigitsInputFilter(8,2)});
+        depositValue.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(8, 2)});
 
         deposit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(depositValue.length() <= 0) {
+                if (depositValue.length() <= 0) {
                     depositValue.setError("To pole jest wymagane");
                     return;
                 }
@@ -66,7 +65,7 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if(depositValue.length() <= 0) {
+                if (depositValue.length() <= 0) {
                     depositValue.setError("To pole jest wymagane");
                     return;
                 }
@@ -74,7 +73,8 @@ public class AccountFragment extends Fragment {
                 amount = Float.parseFloat(accountBalance.getText().toString());
                 price = Float.parseFloat(depositValue.getText().toString());
                 subtraction = amount - price;
-                if(subtraction < 0) {
+
+                if (subtraction < 0) {
                     depositValue.setError("Kwota, którą próbujesz wypłacić przekracza kwotę środków na Twoim koncie");
                     return;
                 }
