@@ -6,6 +6,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,21 +25,53 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class MatchesFragment extends Fragment {
 
     TextView textView;
-    Match match;
+    Match match /*= new Match()*/;
+    Spinner s;
+    List<String> competition = new ArrayList<>();
+    private MatchesFragment fragment;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_matches, container, false);
-        new HttpGetRequest(this).execute();
+        new HttpGetRequest().execute();
+        competition.add("Premier League");
+        competition.add("Erdesive");
         textView = view.findViewById(R.id.textView);
-        textView.setText(match.getMatchday().toString());
+        ArrayAdapter adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, competition);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        s = view.findViewById(R.id.spinner1);
+        s.setAdapter(adapter);
+        s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String item = parent.getItemAtPosition(position).toString();
+                while (match == null);
+                if(item.equals("Premier League")) {
+                    textView.setText((match.getCompetition().getName()));
+                    Log.e("Info", match.getCompetition().getName());
+                }
+                if(item.equals("Erdesive"))
+                {
+                    textView.setText((match.getCompetition().getName()));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                new HttpGetRequest().execute();
+            }
+
+        });
+        //textView.setText(match.getMatchday().toString());
 
         return view;
     }
@@ -44,19 +79,19 @@ public class MatchesFragment extends Fragment {
 
 class HttpGetRequest extends AsyncTask<Void, Void, Void> {
 
-    Fragment fragment;
+    private MatchesFragment fragment;
     Match match;
-    String apiToken = "f6765dcdd1024189a9d257a09fe451c8";
+    public static String apiToken = "f6765dcdd1024189a9d257a09fe451c8";
 
-    public HttpGetRequest(Fragment fragment) {
-        this.fragment = fragment;
-    }
+//    public HttpGetRequest(MatchesFragment fragment) {
+//        this.fragment = fragment;
+//    }
 
     @Override
     protected Void doInBackground(Void... params) {
-        HttpURLConnection con = null;
+        HttpURLConnection con;
         try {
-            URL url = new URL("https://api.football-data.org/v2/matches");
+            URL url = new URL("https://api.football-data.org/v2/competitions/PL/matches");
             con = (HttpURLConnection) url.openConnection();
             con.setRequestProperty("Accept", "application/json");
             con.setRequestProperty("X-Auth-Token", apiToken);
