@@ -29,7 +29,7 @@ public class HalfTime
     @Override
     public String toString()
     {
-        return "ClassPojo [awayTeam = "+awayTeam+", homeTeam = "+homeTeam+"]";
+        return "HalfTime { awayTeam = "+awayTeam+", homeTeam = "+homeTeam+"}";
     }
 }
 

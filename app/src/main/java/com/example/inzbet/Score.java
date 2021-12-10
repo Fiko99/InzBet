@@ -1,70 +1,70 @@
 package com.example.inzbet;
 
-public class Score
-{
-    private String duration;
-
-    private String winner;
-
-    private HalfTime halfTime;
-
-    private FullTime fullTime;
-
-    private ExtraTime extraTime;
-
-    public String getDuration ()
-    {
-        return duration;
+public class Score{
+    @Override
+    public String toString() {
+        return "Score{" +
+                "winner='" + winner + '\'' +
+                ", duration='" + duration + '\'' +
+                ", fullTime=" + fullTime +
+                ", halfTime=" + halfTime +
+                ", extraTime=" + extraTime +
+                ", penalties=" + penalties +
+                '}';
     }
 
-    public void setDuration (String duration)
-    {
-        this.duration = duration;
-    }
-
-    public String getWinner ()
-    {
+    public String getWinner() {
         return winner;
     }
 
-    public void setWinner (String winner)
-    {
+    public void setWinner(String winner) {
         this.winner = winner;
     }
 
-    public HalfTime getHalfTime ()
-    {
-        return halfTime;
+    public String getDuration() {
+        return duration;
     }
 
-    public void setHalfTime (HalfTime halfTime)
-    {
-        this.halfTime = halfTime;
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 
-    public FullTime getFullTime ()
-    {
+    public FullTime getFullTime() {
         return fullTime;
     }
 
-    public void setFullTime (FullTime fullTime)
-    {
+    public void setFullTime(FullTime fullTime) {
         this.fullTime = fullTime;
     }
 
-    public ExtraTime getExtraTime ()
-    {
+    public HalfTime getHalfTime() {
+        return halfTime;
+    }
+
+    public void setHalfTime(HalfTime halfTime) {
+        this.halfTime = halfTime;
+    }
+
+    public ExtraTime getExtraTime() {
         return extraTime;
     }
 
-    public void setExtraTime (ExtraTime extraTime)
-    {
+    public void setExtraTime(ExtraTime extraTime) {
         this.extraTime = extraTime;
     }
 
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [duration = "+duration+", winner = "+winner+", halfTime = "+halfTime+", fullTime = "+fullTime+", extraTime = "+extraTime+"]";
+    public Penalties getPenalties() {
+        return penalties;
     }
+
+    public void setPenalties(Penalties penalties) {
+        this.penalties = penalties;
+    }
+
+    private String winner;
+    private String duration;
+    private FullTime fullTime;
+    private HalfTime halfTime;
+    private ExtraTime extraTime;
+    private Penalties penalties;
 }

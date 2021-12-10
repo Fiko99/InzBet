@@ -38,21 +38,16 @@ public class MainActivity extends AppCompatActivity {
     public MatchesFragment matchesFragment = new MatchesFragment();
     public BetsFragment betsFragment = new BetsFragment();
 
-//    private Match match;
-//    TextView textView2;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //downloadData();
 
         floatingActionButton = findViewById(R.id.fab_1);
         bottomNavigationView = findViewById(R.id.bottom_nav);
         person = findViewById(R.id.person_icon);
         textView = findViewById(R.id.text_view_title);
         cancel = findViewById(R.id.cancel_icon);
-        //textView2 = findViewById(R.id.textView);
 
         cancel.setVisibility(View.GONE);
 
@@ -98,8 +93,6 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.navigation_matches:
                             selectedFragment = matchesFragment;
                             setComponentsAttributes();
-//                            downloadData();
-//                            textView2.setText((match.getHomeTeam().toString()));
                             break;
                         case R.id.navigation_bets:
                             selectedFragment = betsFragment;
@@ -112,24 +105,6 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
             };
-
-//    private void downloadData() {
-//        HttpURLConnection con = null;
-//        try {
-//            URL url = new URL("https://api.football-data.org/v2/matches");
-//            con = (HttpURLConnection) url.openConnection();
-//            con.setRequestProperty("Accept", "application/json");
-//            con.setRequestProperty("X-Auth-Token", "f6765dcdd1024189a9d257a09fe451c8");
-//            if (con.getResponseCode() == 200) {
-//                BufferedReader is = new BufferedReader(new InputStreamReader(con.getInputStream()));
-//                Gson gson = new Gson();
-//                match = gson.fromJson(is, Match.class);
-//                con.disconnect();
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     // ustawienie widoczności floatingActionButton oraz tła ikony "person"
     public void setComponentsAttributes() {

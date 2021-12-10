@@ -29,6 +29,6 @@ public class FullTime
     @Override
     public String toString()
     {
-        return "ClassPojo [awayTeam = "+awayTeam+", homeTeam = "+homeTeam+"]";
+        return "FullTime { awayTeam = "+awayTeam+", homeTeam = "+homeTeam+"}";
     }
 }
