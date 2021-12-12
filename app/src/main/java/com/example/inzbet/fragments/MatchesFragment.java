@@ -114,7 +114,7 @@ class HttpGetRequest extends AsyncTask<String, Void, Root> {
                 param = s;
                 break;
             }
-            URL url = new URL("https://api.football-data.org/v2/competitions/"+ param +"/matches");
+            URL url = new URL("https://api.football-data.org/v2/competitions/"+ param +"/matches?status=SCHEDULED");
             con = (HttpURLConnection) url.openConnection();
             con.setRequestProperty("Accept", "application/json");
             con.setRequestProperty("X-Auth-Token", apiToken);
