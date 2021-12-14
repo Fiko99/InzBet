@@ -5,6 +5,13 @@ import java.util.List;
 
 public class Match{
 
+    public Match(int id, Date utcDate, HomeTeam homeTeam, AwayTeam awayTeam) {
+        this.id = id;
+        this.utcDate = utcDate;
+        this.homeTeam = homeTeam;
+        this.awayTeam = awayTeam;
+    }
+
     public int getId() {
         return id;
     }
