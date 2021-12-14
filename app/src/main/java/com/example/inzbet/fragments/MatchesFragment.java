@@ -14,8 +14,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.inzbet.Match;
+import com.example.inzbet.MatchRecyclerViewAdapter;
 import com.example.inzbet.R;
 import com.example.inzbet.Root;
 import com.google.gson.Gson;
@@ -38,10 +41,12 @@ import java.util.concurrent.TimeoutException;
 public class MatchesFragment extends Fragment {
 
     TextView textView;
-    Match match /*= new Match()*/;
     Spinner s;
     List<String> competition = new ArrayList<>();
-    private MatchesFragment fragment;
+    RecyclerView recyclerView;
+    MatchRecyclerViewAdapter adapter;
+    private MatchRecyclerViewAdapter.RecyclerViewClickListener listener;
+    List<Root> matches = new ArrayList<>();
 
     @Nullable
     @Override
@@ -88,7 +93,15 @@ public class MatchesFragment extends Fragment {
             }
 
         });
-        //textView.setText(match.getMatchday().toString());
+
+        this.adapter = new MatchRecyclerViewAdapter(matches, listener);
+        HttpGetRequest hgr = new HttpGetRequest();
+        hgr.execute("PL");
+
+        this.recyclerView = view.findViewById(R.id.matchRV);
+        this.recyclerView.setHasFixedSize(true);
+        this.recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        this.recyclerView.setAdapter(this.adapter);
 
         return view;
     }
@@ -96,14 +109,8 @@ public class MatchesFragment extends Fragment {
 
 class HttpGetRequest extends AsyncTask<String, Void, Root> {
 
-    private MatchesFragment fragment;
-    Match match;
     public Root all_stuff;
     public static String apiToken = "f6765dcdd1024189a9d257a09fe451c8";
-
-//    public HttpGetRequest(MatchesFragment fragment) {
-//        this.fragment = fragment;
-//    }
 
     @Override
     protected Root doInBackground(String... params) {
