@@ -1,8 +1,8 @@
-package com.example.inzbet;
+package com.example.inzbet.pojo;
 
 import java.util.Date;
 
-public class Competition{
+public class Competition {
     @Override
     public String toString() {
         return "Competition{" +

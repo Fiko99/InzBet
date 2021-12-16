@@ -1,9 +1,9 @@
-package com.example.inzbet;
+package com.example.inzbet.pojo;
 
 import java.util.List;
 
 
-public class Root{
+public class Root {
     public int count;
     public Filters filters;
     public Competition competition;

@@ -1,6 +1,4 @@
-package com.example.inzbet;
-
-import java.util.List;
+package com.example.inzbet.pojo;
 
 public class Team {
     @Override

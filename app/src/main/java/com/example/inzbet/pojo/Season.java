@@ -1,6 +1,6 @@
-package com.example.inzbet;
+package com.example.inzbet.pojo;
 
-public class Season{
+public class Season {
     @Override
     public String toString() {
         return "Season{" +

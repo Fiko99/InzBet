@@ -1,6 +1,5 @@
 package com.example.inzbet;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
+import com.example.inzbet.pojo.Match;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -39,7 +38,6 @@ public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecycler
         holder.homeTeam.setText(match.getHomeTeam().getName());
         holder.time.setText(new SimpleDateFormat("dd.MM\nHH:mm", Locale.getDefault()).format(match.getUtcDate()));
         holder.awayTeam.setText(match.getAwayTeam().getName());
-        // TODO: generator liczb losowych i połączneie go z tym 1, X, 2
         holder.homeTeamBet.setText(String.format("1\n%.2f",
                 match.getOdds().getHomeTeamOdd()));
         holder.drawBet.setText(String.format("X\n%.2f",

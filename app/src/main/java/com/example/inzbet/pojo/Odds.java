@@ -1,4 +1,4 @@
-package com.example.inzbet;
+package com.example.inzbet.pojo;
 
 public class Odds {
     private float homeTeamOdd;

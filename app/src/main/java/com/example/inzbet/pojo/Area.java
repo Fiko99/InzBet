@@ -1,6 +1,6 @@
-package com.example.inzbet;
+package com.example.inzbet.pojo;
 
-public class Area{
+public class Area {
     private int id;
     private String name;
     private String ensignUrl;

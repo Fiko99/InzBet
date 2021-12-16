@@ -1,9 +1,9 @@
-package com.example.inzbet;
+package com.example.inzbet.pojo;
 
 import java.util.Date;
 import java.util.List;
 
-public class Match{
+public class Match {
 
 //    public Match(int id, Date utcDate, HomeTeam homeTeam, AwayTeam awayTeam) {
 //        this.id = id;

@@ -1,6 +1,6 @@
-package com.example.inzbet;
+package com.example.inzbet.pojo;
 
-public class Penalties{
+public class Penalties {
     @Override
     public String toString() {
         return "Penalties{" +

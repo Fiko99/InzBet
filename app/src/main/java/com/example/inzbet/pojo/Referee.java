@@ -1,6 +1,6 @@
-package com.example.inzbet;
+package com.example.inzbet.pojo;
 
-public class Referee{
+public class Referee {
     private int id;
     private String name;
     private String role;

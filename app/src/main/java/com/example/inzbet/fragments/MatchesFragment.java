@@ -15,12 +15,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.inzbet.Match;
+import com.example.inzbet.pojo.Match;
 import com.example.inzbet.MatchRecyclerViewAdapter;
-import com.example.inzbet.Odds;
+import com.example.inzbet.pojo.Odds;
 import com.example.inzbet.R;
 import com.example.inzbet.RandomOddsGenerator;
-import com.example.inzbet.Root;
+import com.example.inzbet.pojo.Root;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -95,7 +95,6 @@ public class MatchesFragment extends Fragment {
             try {
                 hgr.get(2, TimeUnit.SECONDS);
                 rMatches = hgr.all_stuff;
-                // TODO: Wygenerować oddsy
                 randomOddsGenerator = new RandomOddsGenerator();
                 for (Match match : rMatches.matches) {
                     randomOddsGenerator.generateAllOdds();

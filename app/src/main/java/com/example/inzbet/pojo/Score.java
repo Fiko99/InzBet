@@ -1,6 +1,6 @@
-package com.example.inzbet;
+package com.example.inzbet.pojo;
 
-public class Score{
+public class Score {
     @Override
     public String toString() {
         return "Score{" +
