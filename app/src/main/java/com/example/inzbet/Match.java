@@ -5,12 +5,12 @@ import java.util.List;
 
 public class Match{
 
-    public Match(int id, Date utcDate, HomeTeam homeTeam, AwayTeam awayTeam) {
-        this.id = id;
-        this.utcDate = utcDate;
-        this.homeTeam = homeTeam;
-        this.awayTeam = awayTeam;
-    }
+//    public Match(int id, Date utcDate, HomeTeam homeTeam, AwayTeam awayTeam) {
+//        this.id = id;
+//        this.utcDate = utcDate;
+//        this.homeTeam = homeTeam;
+//        this.awayTeam = awayTeam;
+//    }
 
     public int getId() {
         return id;
@@ -116,6 +116,14 @@ public class Match{
         this.competition = competition;
     }
 
+    public Odds getOdds() {
+        return odds;
+    }
+
+    public void setOdds(Odds odds) {
+        this.odds = odds;
+    }
+
     @Override
     public String toString() {
         return "Match{" +
@@ -132,6 +140,7 @@ public class Match{
                 ", awayTeam=" + awayTeam +
                 ", referees=" + referees +
                 ", competition=" + competition +
+                ", odds=" + odds +
                 '}';
     }
 
@@ -148,4 +157,5 @@ public class Match{
     private AwayTeam awayTeam;
     private List<Referee> referees;
     private Competition competition;
+    private Odds odds;
 }

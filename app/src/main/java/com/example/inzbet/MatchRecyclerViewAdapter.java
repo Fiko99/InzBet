@@ -12,13 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecyclerViewAdapter.ViewHolder> {
-    List<Root> MatchList;
+    List<Match> MatchList;
     private RecyclerViewClickListener listener;
 
-    public MatchRecyclerViewAdapter(List<Root> matchesList, RecyclerViewClickListener listener) {
+    public MatchRecyclerViewAdapter(List<Match> matchesList, RecyclerViewClickListener listener) {
         this.MatchList = matchesList;
         this.listener = listener;
     }
@@ -33,11 +35,18 @@ public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecycler
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Root Root = MatchList.get(position);
-        holder.homeTeam.setText(Root.matches.get(0).getHomeTeam().getName());
-        holder.time.setText(Root.matches.get(0).getUtcDate().toString());
-        holder.awayTeam.setText(Root.matches.get(0).getAwayTeam().getName());
-        // TO DO: generator liczb losowych i połączneie go z tym 1, X, 2
+        Match match = MatchList.get(position);
+        holder.homeTeam.setText(match.getHomeTeam().getName());
+        holder.time.setText(new SimpleDateFormat("dd.MM\nHH:mm", Locale.getDefault()).format(match.getUtcDate()));
+        holder.awayTeam.setText(match.getAwayTeam().getName());
+        // TODO: generator liczb losowych i połączneie go z tym 1, X, 2
+        holder.homeTeamBet.setText(String.format("1\n%.2f",
+                match.getOdds().getHomeTeamOdd()));
+        holder.drawBet.setText(String.format("X\n%.2f",
+                match.getOdds().getDrawOdd()));
+        holder.awayTeamBet.setText(String.format("2\n%.2f",
+                match.getOdds().getAwayTeamOdd()));
+
     }
 
     @Override
