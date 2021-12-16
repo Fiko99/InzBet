@@ -29,7 +29,6 @@ public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecycler
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.match_component, parent, false);
-
         return new ViewHolder(view);
     }
 
@@ -66,6 +65,17 @@ public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecycler
                 onPressed(holder.awayTeamBet);
             }
         });
+
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
     }
 
     public void onPressed(Button button) {
