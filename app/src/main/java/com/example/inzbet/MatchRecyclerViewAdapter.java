@@ -1,6 +1,9 @@
 package com.example.inzbet;
 
+import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,11 +20,9 @@ import java.util.Locale;
 
 public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecyclerViewAdapter.ViewHolder> {
     List<Match> MatchList;
-    private RecyclerViewClickListener listener;
 
-    public MatchRecyclerViewAdapter(List<Match> matchesList, RecyclerViewClickListener listener) {
+    public MatchRecyclerViewAdapter(List<Match> matchesList) {
         this.MatchList = matchesList;
-        this.listener = listener;
     }
 
     @NonNull
@@ -45,6 +46,30 @@ public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecycler
         holder.awayTeamBet.setText(String.format("2\n%.2f",
                 match.getOdds().getAwayTeamOdd()));
 
+        holder.homeTeamBet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onPressed(holder.homeTeamBet);
+            }
+        });
+
+        holder.drawBet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onPressed(holder.drawBet);
+            }
+        });
+
+        holder.awayTeamBet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onPressed(holder.awayTeamBet);
+            }
+        });
+    }
+
+    public void onPressed(Button button) {
+        button.setSelected(!button.isSelected());
     }
 
     @Override
@@ -52,7 +77,7 @@ public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecycler
         return MatchList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         TextView homeTeam;
         TextView time;
         TextView awayTeam;
@@ -68,18 +93,7 @@ public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecycler
             homeTeamBet = itemView.findViewById(R.id.home_team_bet);
             drawBet = itemView.findViewById(R.id.draw_bet);
             awayTeamBet = itemView.findViewById(R.id.away_team_bet);
-            itemView.setOnClickListener(this);
         }
-
-        @Override
-        public void onClick(View itemView) {
-            listener.onClick(itemView, getAdapterPosition());
-        }
-    }
-
-    public interface RecyclerViewClickListener
-    {
-        void onClick(View v, int position);
     }
 }
 

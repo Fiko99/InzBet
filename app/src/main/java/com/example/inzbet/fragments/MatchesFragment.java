@@ -39,7 +39,6 @@ public class MatchesFragment extends Fragment {
     List<String> competition = new ArrayList<>();
     RecyclerView recyclerView;
     MatchRecyclerViewAdapter matchAdapter;
-    private MatchRecyclerViewAdapter.RecyclerViewClickListener listener;
     Root rMatches;
     RandomOddsGenerator randomOddsGenerator;
 
@@ -106,7 +105,7 @@ public class MatchesFragment extends Fragment {
                 Log.e("timeout", "Za długo oczekiwano na dane.");
             }catch(Exception e) { }
         }
-        matchAdapter = new MatchRecyclerViewAdapter(rMatches.matches, listener);
+        matchAdapter = new MatchRecyclerViewAdapter(rMatches.matches);
 
         this.recyclerView = view.findViewById(R.id.matchRV);
         this.recyclerView.setHasFixedSize(true);

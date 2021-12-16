@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="1"
-                android:backgroundTint="#ffe800"
+                android:backgroundTint="@color/button_background_color"
                 />
 
             <Space
@@ -67,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#ffe800"
+                android:backgroundTint="@color/button_background_color"
                 android:text="X" />
 
             <Space
@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="2"
-                android:backgroundTint="#ffe800"/>
+                android:backgroundTint="@color/button_background_color"/>
 
         </LinearLayout>
 
@@ -93,4 +93,5 @@
             android:background="?android:attr/listDivider" />
 
     </LinearLayout>
+
 </LinearLayout>
