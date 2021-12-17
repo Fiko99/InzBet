@@ -45,26 +45,26 @@ public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecycler
         holder.awayTeamBet.setText(String.format("2\n%.2f",
                 match.getOdds().getAwayTeamOdd()));
 
-        holder.homeTeamBet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onPressed(holder.homeTeamBet);
-            }
-        });
-
-        holder.drawBet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onPressed(holder.drawBet);
-            }
-        });
-
-        holder.awayTeamBet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onPressed(holder.awayTeamBet);
-            }
-        });
+//        holder.homeTeamBet.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onPressed(holder.homeTeamBet);
+//            }
+//        });
+//
+//        holder.drawBet.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onPressed(holder.drawBet);
+//            }
+//        });
+//
+//        holder.awayTeamBet.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onPressed(holder.awayTeamBet);
+//            }
+//        });
 
     }
 
@@ -87,13 +87,16 @@ public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecycler
         return MatchList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView homeTeam;
         TextView time;
         TextView awayTeam;
         Button homeTeamBet;
         Button drawBet;
         Button awayTeamBet;
+        Button[] btnGroup = new Button[3];
+        Button btnUnfocus;
+        int[] btnId = {R.id.home_team_bet, R.id.draw_bet, R.id.away_team_bet};
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -103,6 +106,36 @@ public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecycler
             homeTeamBet = itemView.findViewById(R.id.home_team_bet);
             drawBet = itemView.findViewById(R.id.draw_bet);
             awayTeamBet = itemView.findViewById(R.id.away_team_bet);
+            for(int i = 0; i < btnGroup.length; i++){
+                btnGroup[i] = itemView.findViewById(btnId[i]);
+                btnGroup[i].setBackgroundColor(Color.parseColor("#ffe800"));
+                btnGroup[i].setOnClickListener(this);
+            }
+            btnUnfocus = btnGroup[0];
+        }
+
+        @SuppressLint("NonConstantResourceId")
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.home_team_bet:
+                    setFocus(btnUnfocus, btnGroup[0]);
+                    break;
+
+                case R.id.draw_bet:
+                    setFocus(btnUnfocus, btnGroup[1]);
+                    break;
+
+                case R.id.away_team_bet:
+                    setFocus(btnUnfocus, btnGroup[2]);
+                    break;
+            }
+        }
+
+        public void setFocus(Button btnUnfocus, Button btnFocus){
+            btnUnfocus.setBackgroundColor(Color.parseColor("#ffe800"));
+            btnFocus.setBackgroundColor(Color.parseColor("#000000"));
+            this.btnUnfocus = btnFocus;
         }
     }
 }
