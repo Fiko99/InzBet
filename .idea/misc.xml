@@ -4,13 +4,20 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/fikot/AndroidStudioProjects/InzBet/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2703125" />
+        <entry key="..\:/Users/fikot/AndroidStudioProjects/InzBet/app/src/main/res/drawable/border.xml" value="0.2703125" />
         <entry key="..\:/Users/fikot/AndroidStudioProjects/InzBet/app/src/main/res/drawable/button_background_color.xml" value="0.2703125" />
+        <entry key="..\:/Users/fikot/AndroidStudioProjects/InzBet/app/src/main/res/drawable/divider.xml" value="0.2703125" />
         <entry key="..\:/Users/fikot/AndroidStudioProjects/InzBet/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.2703125" />
+        <entry key="..\:/Users/fikot/AndroidStudioProjects/InzBet/app/src/main/res/drawable/ic_baseline_featured_play_list_24.xml" value="0.2703125" />
+        <entry key="..\:/Users/fikot/AndroidStudioProjects/InzBet/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.2703125" />
         <entry key="..\:/Users/fikot/AndroidStudioProjects/InzBet/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.2703125" />
         <entry key="..\:/Users/fikot/AndroidStudioProjects/InzBet/app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.2703125" />
         <entry key="..\:/Users/fikot/AndroidStudioProjects/InzBet/app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.2703125" />
         <entry key="..\:/Users/fikot/AndroidStudioProjects/InzBet/app/src/main/res/drawable/ic_baseline_sports_soccer_24.xml" value="0.2703125" />
         <entry key="..\:/Users/fikot/AndroidStudioProjects/InzBet/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
+        <entry key="..\:/Users/fikot/AndroidStudioProjects/InzBet/app/src/main/res/drawable/radio_normal.xml" value="0.2703125" />
+        <entry key="..\:/Users/fikot/AndroidStudioProjects/InzBet/app/src/main/res/drawable/radio_selected.xml" value="0.2703125" />
+        <entry key="..\:/Users/fikot/AndroidStudioProjects/InzBet/app/src/main/res/drawable/radio_selector.xml" value="0.2703125" />
         <entry key="..\:/Users/fikot/AndroidStudioProjects/InzBet/app/src/main/res/drawable/selector.xml" value="0.2703125" />
         <entry key="..\:/Users/fikot/AndroidStudioProjects/InzBet/app/src/main/res/layout/activity_main.xml" value="0.20742753623188406" />
         <entry key="..\:/Users/fikot/AndroidStudioProjects/InzBet/app/src/main/res/layout/activity_new_bet.xml" value="0.21875" />
@@ -32,5 +39,8 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="SuppressKotlinCodeStyleNotification">
+    <option name="disableForAll" value="true" />
   </component>
 </project>

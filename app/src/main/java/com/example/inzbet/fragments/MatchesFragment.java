@@ -15,11 +15,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.inzbet.pojo.Match;
 import com.example.inzbet.MatchRecyclerViewAdapter;
-import com.example.inzbet.pojo.Odds;
 import com.example.inzbet.R;
 import com.example.inzbet.RandomOddsGenerator;
+import com.example.inzbet.pojo.Match;
+import com.example.inzbet.pojo.Odds;
 import com.example.inzbet.pojo.Root;
 import com.google.gson.Gson;
 
@@ -88,7 +88,7 @@ public class MatchesFragment extends Fragment {
 //
 //        });
 
-        if(rMatches == null) {
+        if (rMatches == null) {
             HttpGetRequest hgr = new HttpGetRequest();
             hgr.execute("PL");
             try {
@@ -101,9 +101,10 @@ public class MatchesFragment extends Fragment {
                             randomOddsGenerator.getAwayOdd(),
                             randomOddsGenerator.getDrawOdd()));
                 }
-            }catch(TimeoutException e) {
+            } catch (TimeoutException e) {
                 Log.e("timeout", "Za długo oczekiwano na dane.");
-            }catch(Exception e) { }
+            } catch (Exception e) {
+            }
         }
         matchAdapter = new MatchRecyclerViewAdapter(rMatches.matches);
 
@@ -126,11 +127,11 @@ class HttpGetRequest extends AsyncTask<String, Void, Root> {
         String param = "";
         HttpURLConnection con;
         try {
-            for(String s : params) {
+            for (String s : params) {
                 param = s;
                 break;
             }
-            URL url = new URL("https://api.football-data.org/v2/competitions/"+ param +"/matches?status=SCHEDULED");
+            URL url = new URL("https://api.football-data.org/v2/competitions/" + param + "/matches?status=SCHEDULED");
             con = (HttpURLConnection) url.openConnection();
             con.setRequestProperty("Accept", "application/json");
             con.setRequestProperty("X-Auth-Token", apiToken);
@@ -147,6 +148,7 @@ class HttpGetRequest extends AsyncTask<String, Void, Root> {
         }
         return all_stuff;
     }
+
     @NonNull
     private String toStringAllStuff() {
         StringBuilder sb = new StringBuilder();
