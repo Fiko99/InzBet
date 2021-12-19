@@ -39,7 +39,7 @@ public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecycler
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Context context = holder.itemView.getContext();
         Match match = MatchList.get(position);
         holder.homeTeam.setText(match.getHomeTeam().getName());
@@ -58,46 +58,44 @@ public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecycler
         SharedPreferences sharedPreferences = context.getSharedPreferences("save_home", Context.MODE_PRIVATE);
         SharedPreferences sharedPreferences2 = context.getSharedPreferences("save_draw", Context.MODE_PRIVATE);
         SharedPreferences sharedPreferences3 = context.getSharedPreferences("save_away", Context.MODE_PRIVATE);
-        holder.homeTeamBet.setChecked(sharedPreferences.getBoolean("home_enable", false));
-        holder.drawBet.setChecked(sharedPreferences2.getBoolean("draw_enable", false));
-        holder.awayTeamBet.setChecked(sharedPreferences3.getBoolean("away_enable", false));
+        holder.homeTeamBet.setChecked(sharedPreferences.getBoolean("home_enable" + position, false));
+        holder.drawBet.setChecked(sharedPreferences2.getBoolean("draw_enable" + position, false));
+        holder.awayTeamBet.setChecked(sharedPreferences3.getBoolean("away_enable" + position, false));
         holder.materialButtonToggleGroup.addOnButtonCheckedListener(new MaterialButtonToggleGroup.OnButtonCheckedListener() {
             @Override
             public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
                 if (checkedId == R.id.home_team_bet) {
                     if (holder.homeTeamBet.isChecked()) {
                         SharedPreferences.Editor editor = context.getSharedPreferences("save_home", Context.MODE_PRIVATE).edit();
-                        editor.putBoolean("home_enable", true);
+                        editor.putBoolean("home_enable" + position, true);
                         editor.apply();
-                        Log.e("Które id", String.valueOf(checkedId));
-                        Log.e("Która pozycja elementu", String.valueOf(holder.getAdapterPosition()));
                     } else if (!holder.homeTeamBet.isChecked()) {
                         SharedPreferences.Editor editor = context.getSharedPreferences("save_home", Context.MODE_PRIVATE).edit();
-                        editor.putBoolean("home_enable", false);
+                        editor.putBoolean("home_enable" + position, false);
                         editor.apply();
                     }
 
                 } else if (checkedId == R.id.draw_bet) {
                     if (holder.drawBet.isChecked()) {
                         SharedPreferences.Editor editor = context.getSharedPreferences("save_draw", Context.MODE_PRIVATE).edit();
-                        editor.putBoolean("draw_enable", true);
+                        editor.putBoolean("draw_enable" + position, true);
                         editor.apply();
                     }
                     else if (!holder.drawBet.isChecked()){
                         SharedPreferences.Editor editor = context.getSharedPreferences("save_draw", Context.MODE_PRIVATE).edit();
-                        editor.putBoolean("draw_enable", false);
+                        editor.putBoolean("draw_enable" + position, false);
                         editor.apply();
                     }
 
                 } else if (checkedId == R.id.away_team_bet) {
                     if (holder.awayTeamBet.isChecked()) {
                         SharedPreferences.Editor editor = context.getSharedPreferences("save_away", Context.MODE_PRIVATE).edit();
-                        editor.putBoolean("away_enable", true);
+                        editor.putBoolean("away_enable" + position, true);
                         editor.apply();
                     }
                     else if (!holder.awayTeamBet.isChecked()){
                         SharedPreferences.Editor editor = context.getSharedPreferences("save_away", Context.MODE_PRIVATE).edit();
-                        editor.putBoolean("away_enable", false);
+                        editor.putBoolean("away_enable" + position, false);
                         editor.apply();
                     }
                 }
