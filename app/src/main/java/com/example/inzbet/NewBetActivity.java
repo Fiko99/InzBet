@@ -37,7 +37,6 @@ public class NewBetActivity extends AppCompatActivity {
         this.recyclerView.setHasFixedSize(true);
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         this.recyclerView.setAdapter(couponAdapter);
-
     }
 
     @Override

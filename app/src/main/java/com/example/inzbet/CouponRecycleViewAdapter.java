@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.inzbet.pojo.Match;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 public class CouponRecycleViewAdapter extends RecyclerView.Adapter<CouponRecycleViewAdapter.ViewHolder> {

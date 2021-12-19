@@ -1,5 +1,8 @@
 package com.example.inzbet;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +36,7 @@ public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecycler
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Context context = holder.itemView.getContext();
         Match match = MatchList.get(position);
         holder.homeTeam.setText(match.getHomeTeam().getName());
         holder.time.setText(new SimpleDateFormat("dd.MM\nHH:mm", Locale.getDefault()).format(match.getUtcDate()));
@@ -46,6 +50,27 @@ public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecycler
         holder.homeTeamBet.setMaxLines(2);
         holder.drawBet.setMaxLines(2);
         holder.awayTeamBet.setMaxLines(2);
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences("save", Context.MODE_PRIVATE);
+        holder.homeTeamBet.setChecked(sharedPreferences.getBoolean("value", true));
+        holder.homeTeamBet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (holder.homeTeamBet.isChecked()) {
+                    SharedPreferences.Editor editor = context.getSharedPreferences("save", Context.MODE_PRIVATE).edit();
+                    editor.putBoolean("value", true);
+                    editor.apply();
+                    holder.homeTeamBet.setChecked(true);
+
+                } else {
+                    holder.getAdapterPosition();
+                    SharedPreferences.Editor editor = context.getSharedPreferences("save", Context.MODE_PRIVATE).edit();
+                    editor.putBoolean("value", false);
+                    editor.apply();
+                    holder.homeTeamBet.setChecked(false);
+                }
+            }
+        });
 
     }
 
