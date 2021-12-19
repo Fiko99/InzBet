@@ -34,9 +34,9 @@ import java.util.concurrent.TimeoutException;
 
 public class MatchesFragment extends Fragment {
 
-    TextView textView;
-    Spinner s;
-    List<String> competition = new ArrayList<>();
+//    TextView textView;
+//    Spinner s;
+//    List<String> competition = new ArrayList<>();
     RecyclerView recyclerView;
     MatchRecyclerViewAdapter matchAdapter;
     Root rMatches;
@@ -93,7 +93,7 @@ public class MatchesFragment extends Fragment {
             hgr.execute("PL");
             try {
                 hgr.get(2, TimeUnit.SECONDS);
-                rMatches = hgr.all_stuff;
+                rMatches = hgr.allStuff;
                 randomOddsGenerator = new RandomOddsGenerator();
                 for (Match match : rMatches.matches) {
                     randomOddsGenerator.generateAllOdds();
@@ -119,7 +119,7 @@ public class MatchesFragment extends Fragment {
 
 class HttpGetRequest extends AsyncTask<String, Void, Root> {
 
-    public Root all_stuff;
+    public Root allStuff;
     public static String apiToken = "f6765dcdd1024189a9d257a09fe451c8";
 
     @Override
@@ -138,21 +138,21 @@ class HttpGetRequest extends AsyncTask<String, Void, Root> {
             if (con.getResponseCode() == 200) {
                 BufferedReader is = new BufferedReader(new InputStreamReader(con.getInputStream()));
                 Gson gson = new Gson();
-                all_stuff = gson.fromJson(is, Root.class);
+                allStuff = gson.fromJson(is, Root.class);
                 con.disconnect();
             }
-            Log.e("Json results matches", all_stuff.toString());
+            Log.e("Json results matches", toStringAllStuff());
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return all_stuff;
+        return allStuff;
     }
 
     @NonNull
     private String toStringAllStuff() {
         StringBuilder sb = new StringBuilder();
-        for (Match m : all_stuff.matches) {
+        for (Match m : allStuff.matches) {
             sb.append(m.toString());
             sb.append('\n');
         }

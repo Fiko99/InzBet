@@ -13,14 +13,14 @@
             android:id="@+id/odd_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
             android:text="Kurs"
+            android:textSize="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/deposit_value"
-            app:layout_constraintHorizontal_bias="0.056"
+            app:layout_constraintHorizontal_bias="0.065"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.126" />
+            app:layout_constraintVertical_bias="0.125" />
 
         <TextView
             android:id="@+id/odd"
@@ -75,12 +75,12 @@
 
         <Button
             android:id="@+id/place_bet"
-            android:layout_width="124dp"
-            android:layout_height="46dp"
+            android:layout_width="148dp"
+            android:layout_height="49dp"
             android:layout_marginTop="100dp"
-            android:text="Postaw zakład"
-            android:textSize="10dp"
             android:backgroundTint="#ff0000"
+            android:text="Postaw zakład"
+            android:textSize="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.944"
             app:layout_constraintStart_toStartOf="parent"

@@ -52,9 +52,6 @@ public class RandomOddsGenerator {
     }
 
     private float generateRandomDrawOdd() {
-//        float MIN = (awayOdd < homeOdd ) ? awayOdd : homeOdd;
-//        float MAX = ( MIN == homeOdd ) ? awayOdd : homeOdd;
-//        return (MIN / MAX) + (MAX - MIN);
         float sum = homeOdd + awayOdd;
         if (sum >= 6.0f) {
             return (sum / 1.8f);
