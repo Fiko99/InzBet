@@ -8,18 +8,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.inzbet.pojo.Root;
+import com.example.inzbet.pojo.Match;
+
+import java.util.ArrayList;
 
 public class NewBetActivity extends AppCompatActivity {
 
     private ImageButton cancel;
     RecyclerView recyclerView;
-    Root rMatches;
+    ArrayList<Match> rMatches;
     CouponRecycleViewAdapter couponAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        rMatches = getIntent().getParcelableArrayListExtra("matches");
         setContentView(R.layout.activity_new_bet);
 
         cancel = findViewById(R.id.cancel_icon);
@@ -31,7 +34,7 @@ public class NewBetActivity extends AppCompatActivity {
             }
         });
 
-        couponAdapter = new CouponRecycleViewAdapter(rMatches.matches);
+        couponAdapter = new CouponRecycleViewAdapter(rMatches);
 
         this.recyclerView = findViewById(R.id.couponRV);
         this.recyclerView.setHasFixedSize(true);
@@ -48,4 +51,5 @@ public class NewBetActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
     }
+
 }

@@ -29,7 +29,11 @@ public class CouponRecycleViewAdapter extends RecyclerView.Adapter<CouponRecycle
 
     @Override
     public void onBindViewHolder(@NonNull CouponRecycleViewAdapter.ViewHolder holder, int position) {
-
+        Match match = MatchList.get(position);
+        holder.cHomeTeam.setText(match.getHomeTeam().getName());
+        holder.cAwayTeam.setText(match.getAwayTeam().getName());
+        holder.type.setText(match.getType());
+        // TODO oddsy
     }
 
     @Override

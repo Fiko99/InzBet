@@ -57,6 +57,7 @@ public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecycler
         holder.homeTeamBet.setChecked(sharedPreferences.getBoolean("home_enable" + position, false));
         holder.drawBet.setChecked(sharedPreferences2.getBoolean("draw_enable" + position, false));
         holder.awayTeamBet.setChecked(sharedPreferences3.getBoolean("away_enable" + position, false));
+        checkTypeInMatches(holder, position);
         holder.materialButtonToggleGroup.addOnButtonCheckedListener(new MaterialButtonToggleGroup.OnButtonCheckedListener() {
             @Override
             public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
@@ -65,10 +66,12 @@ public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecycler
                         SharedPreferences.Editor editor = context.getSharedPreferences("save_home", Context.MODE_PRIVATE).edit();
                         editor.putBoolean("home_enable" + position, true);
                         editor.apply();
-                    } else if (!holder.homeTeamBet.isChecked()) {
+                        match.setType("1");
+                    } else {
                         SharedPreferences.Editor editor = context.getSharedPreferences("save_home", Context.MODE_PRIVATE).edit();
                         editor.putBoolean("home_enable" + position, false);
                         editor.apply();
+                        match.setType(null);
                     }
 
                 } else if (checkedId == R.id.draw_bet) {
@@ -76,10 +79,12 @@ public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecycler
                         SharedPreferences.Editor editor = context.getSharedPreferences("save_draw", Context.MODE_PRIVATE).edit();
                         editor.putBoolean("draw_enable" + position, true);
                         editor.apply();
-                    } else if (!holder.drawBet.isChecked()) {
+                        match.setType("X");
+                    } else {
                         SharedPreferences.Editor editor = context.getSharedPreferences("save_draw", Context.MODE_PRIVATE).edit();
                         editor.putBoolean("draw_enable" + position, false);
                         editor.apply();
+                        match.setType(null);
                     }
 
                 } else if (checkedId == R.id.away_team_bet) {
@@ -87,14 +92,29 @@ public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecycler
                         SharedPreferences.Editor editor = context.getSharedPreferences("save_away", Context.MODE_PRIVATE).edit();
                         editor.putBoolean("away_enable" + position, true);
                         editor.apply();
-                    } else if (!holder.awayTeamBet.isChecked()) {
+                        match.setType("2");
+                    } else {
                         SharedPreferences.Editor editor = context.getSharedPreferences("save_away", Context.MODE_PRIVATE).edit();
                         editor.putBoolean("away_enable" + position, false);
                         editor.apply();
+                        match.setType(null);
                     }
                 }
             }
         });
+    }
+
+    public void checkTypeInMatches(@NonNull ViewHolder holder, int position) {
+        Match m = MatchList.get(position);
+        if (holder.homeTeamBet.isChecked()) {
+            m.setType("1");
+        } else if (holder.drawBet.isChecked()) {
+            m.setType("X");
+        } else if (holder.awayTeamBet.isChecked()) {
+            m.setType("2");
+        } else {
+            m.setType(null);
+        }
     }
 
     @Override

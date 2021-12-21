@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.inzbet.MainActivity;
 import com.example.inzbet.MatchRecyclerViewAdapter;
 import com.example.inzbet.R;
 import com.example.inzbet.RandomOddsGenerator;
@@ -30,65 +31,26 @@ import java.util.concurrent.TimeoutException;
 
 public class MatchesFragment extends Fragment {
 
-    //    TextView textView;
-//    Spinner s;
-//    List<String> competition = new ArrayList<>();
     RecyclerView recyclerView;
     MatchRecyclerViewAdapter matchAdapter;
     Root rMatches;
     RandomOddsGenerator randomOddsGenerator;
+    MainActivity ref;
+
+    public MatchesFragment(MainActivity mainActivity) {
+        this.ref = mainActivity;
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_matches, container, false);
-//        competition.add("Premier League");
-//        competition.add("Erdesive");
-//        textView = view.findViewById(R.id.textView);
-//        ArrayAdapter adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, competition);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        s = view.findViewById(R.id.spinner1);
-//        s.setAdapter(adapter);
-//        s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                String item = parent.getItemAtPosition(position).toString();
-//                //while (match == null);
-//                if(item.equals("Premier League")) {
-//                    HttpGetRequest hgr = new HttpGetRequest();
-//                    hgr.execute("PL");
-//                    try {
-//                        hgr.get(2, TimeUnit.SECONDS);
-//                        textView.setText((hgr.all_stuff.matches.get(0).getHomeTeam().getName()));
-//                    } catch(TimeoutException te) {
-//                        Log.e("timeout", "Za długo oczekiwano na dane.");
-//                    } catch(Exception e) {}
-//                }
-//                if(item.equals("Erdesive"))
-//                {
-//                    HttpGetRequest hgr = new HttpGetRequest();
-//                    hgr.execute("DED");
-//                    try {
-//                        hgr.get(2, TimeUnit.SECONDS);
-//                        textView.setText((hgr.all_stuff.matches.get(0).getHomeTeam().getName()));
-//                    } catch(TimeoutException te) {
-//                        Log.e("timeout", "Za długo oczekiwano na dane.");
-//                    } catch(Exception e) {}
-//                }
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//                new HttpGetRequest().execute();
-//            }
-//
-//        });
 
         if (rMatches == null) {
             HttpGetRequest hgr = new HttpGetRequest();
             hgr.execute("PL");
             try {
-                hgr.get(2, TimeUnit.SECONDS);
+                hgr.get(4, TimeUnit.SECONDS);
                 rMatches = hgr.allStuff;
                 randomOddsGenerator = new RandomOddsGenerator();
                 for (Match match : rMatches.matches) {
@@ -103,7 +65,7 @@ public class MatchesFragment extends Fragment {
             }
         }
         matchAdapter = new MatchRecyclerViewAdapter(rMatches.matches);
-
+        ref.matches = rMatches.matches;
         this.recyclerView = view.findViewById(R.id.matchRV);
         this.recyclerView.setHasFixedSize(true);
         this.recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));

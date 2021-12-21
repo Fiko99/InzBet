@@ -1,16 +1,33 @@
 package com.example.inzbet.pojo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
 import java.util.List;
 
-public class Match {
+public class Match implements Parcelable {
 
-//    public Match(int id, Date utcDate, HomeTeam homeTeam, AwayTeam awayTeam) {
-//        this.id = id;
-//        this.utcDate = utcDate;
-//        this.homeTeam = homeTeam;
-//        this.awayTeam = awayTeam;
-//    }
+    protected Match(Parcel in) {
+        id = in.readInt();
+        homeTeam = new HomeTeam();
+        awayTeam = new AwayTeam();
+        homeTeam.setName(in.readString());
+        awayTeam.setName(in.readString());
+        type = in.readString();
+    }
+
+    public static final Creator<Match> CREATOR = new Creator<Match>() {
+        @Override
+        public Match createFromParcel(Parcel in) {
+            return new Match(in);
+        }
+
+        @Override
+        public Match[] newArray(int size) {
+            return new Match[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -124,6 +141,14 @@ public class Match {
         this.odds = odds;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "Match{" +
@@ -158,4 +183,18 @@ public class Match {
     private List<Referee> referees;
     private Competition competition;
     private Odds odds;
+    private String type;
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(homeTeam.getName());
+        dest.writeString(awayTeam.getName());
+        dest.writeString(type);
+    }
 }

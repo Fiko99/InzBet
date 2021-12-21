@@ -16,8 +16,12 @@ import com.example.inzbet.fragments.AccountFragment;
 import com.example.inzbet.fragments.BetsFragment;
 import com.example.inzbet.fragments.HomeFragment;
 import com.example.inzbet.fragments.MatchesFragment;
+import com.example.inzbet.pojo.Match;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,8 +32,9 @@ public class MainActivity extends AppCompatActivity {
     public TextView textView;
     public AccountFragment accountFragment = new AccountFragment();
     public HomeFragment homeFragment = new HomeFragment();
-    public MatchesFragment matchesFragment = new MatchesFragment();
+    public MatchesFragment matchesFragment = new MatchesFragment(this);
     public BetsFragment betsFragment = new BetsFragment();
+    public List<Match> matches;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,6 +131,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void openNewBetActivity() {
         Intent intent = new Intent(this, NewBetActivity.class);
+        ArrayList<Match> listMatches = new ArrayList<>();
+        if (matches != null) {
+            for (Match m : matches) {
+                if (m.getType() != null) {
+                    listMatches.add(m);
+                }
+            }
+        }
+        intent.putExtra("matches", listMatches);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
