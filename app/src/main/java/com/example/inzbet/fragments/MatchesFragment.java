@@ -30,7 +30,7 @@ import java.util.concurrent.TimeoutException;
 
 public class MatchesFragment extends Fragment {
 
-//    TextView textView;
+    //    TextView textView;
 //    Spinner s;
 //    List<String> competition = new ArrayList<>();
     RecyclerView recyclerView;

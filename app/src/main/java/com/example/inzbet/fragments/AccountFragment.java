@@ -1,5 +1,7 @@
 package com.example.inzbet.fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.Spanned;
@@ -13,11 +15,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.inzbet.R;
-import com.example.inzbet.SharedViewModel;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,8 +26,8 @@ public class AccountFragment extends Fragment {
     private EditText depositValue;
     private Button deposit, withdraw;
     private TextView accountBalance;
-    private SharedViewModel viewModel;
-    private float price, previous, subtraction, sum, amount;
+    SharedPreferences sharedPreferences;
+    private float price, previous, subtraction, sum, amount, number;
 
     @Nullable
     @Override
@@ -45,6 +44,7 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+
                 if (depositValue.length() <= 0) {
                     depositValue.setError("To pole jest wymagane");
                     return;
@@ -56,7 +56,11 @@ public class AccountFragment extends Fragment {
                 sum = sum + previous;
 
                 accountBalance.setText(Float.toString(price + sum));
-                viewModel.setNumber(Float.parseFloat(accountBalance.getText().toString()));
+                sharedPreferences = getActivity().getSharedPreferences("prefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putFloat("number", Float.parseFloat((accountBalance.getText().toString())));
+                editor.apply();
+
                 depositValue.getText().clear();
             }
         });
@@ -80,25 +84,24 @@ public class AccountFragment extends Fragment {
                 }
 
                 accountBalance.setText(Float.toString(Float.parseFloat(String.format("%.2f", subtraction))));
-                viewModel.setNumber(Float.parseFloat(accountBalance.getText().toString()));
+                sharedPreferences = getActivity().getSharedPreferences("prefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putFloat("number", Float.parseFloat((accountBalance.getText().toString())));
+                editor.apply();
+
                 depositValue.getText().clear();
             }
         });
 
+        update();
+
         return view;
     }
 
-    // Można dać do onCreateView
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        viewModel = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
-        viewModel.getNumber().observe(getViewLifecycleOwner(), new Observer<Float>() {
-            @Override
-            public void onChanged(Float aFloat) {
-                accountBalance.setText(Float.toString(Float.parseFloat(String.valueOf(aFloat))));
-            }
-        });
+    private void update() {
+        sharedPreferences = getActivity().getSharedPreferences("prefs", Context.MODE_PRIVATE);
+        number = sharedPreferences.getFloat("number", 0);
+        accountBalance.setText(String.valueOf(number));
     }
 
     public class DecimalDigitsInputFilter implements InputFilter {

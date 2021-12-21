@@ -3,16 +3,12 @@ package com.example.inzbet;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.inzbet.pojo.Match;
@@ -80,8 +76,7 @@ public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecycler
                         SharedPreferences.Editor editor = context.getSharedPreferences("save_draw", Context.MODE_PRIVATE).edit();
                         editor.putBoolean("draw_enable" + position, true);
                         editor.apply();
-                    }
-                    else if (!holder.drawBet.isChecked()){
+                    } else if (!holder.drawBet.isChecked()) {
                         SharedPreferences.Editor editor = context.getSharedPreferences("save_draw", Context.MODE_PRIVATE).edit();
                         editor.putBoolean("draw_enable" + position, false);
                         editor.apply();
@@ -92,8 +87,7 @@ public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecycler
                         SharedPreferences.Editor editor = context.getSharedPreferences("save_away", Context.MODE_PRIVATE).edit();
                         editor.putBoolean("away_enable" + position, true);
                         editor.apply();
-                    }
-                    else if (!holder.awayTeamBet.isChecked()){
+                    } else if (!holder.awayTeamBet.isChecked()) {
                         SharedPreferences.Editor editor = context.getSharedPreferences("save_away", Context.MODE_PRIVATE).edit();
                         editor.putBoolean("away_enable" + position, false);
                         editor.apply();
