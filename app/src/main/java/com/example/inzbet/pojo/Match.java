@@ -12,9 +12,13 @@ public class Match implements Parcelable {
         id = in.readInt();
         homeTeam = new HomeTeam();
         awayTeam = new AwayTeam();
+        odds = new Odds();
         homeTeam.setName(in.readString());
         awayTeam.setName(in.readString());
         type = in.readString();
+        odds.setHomeTeamOdd(in.readFloat());
+        odds.setAwayTeamOdd(in.readFloat());
+        odds.setDrawOdd(in.readFloat());
     }
 
     public static final Creator<Match> CREATOR = new Creator<Match>() {
@@ -196,5 +200,8 @@ public class Match implements Parcelable {
         dest.writeString(homeTeam.getName());
         dest.writeString(awayTeam.getName());
         dest.writeString(type);
+        dest.writeFloat(odds.getHomeTeamOdd());
+        dest.writeFloat(odds.getAwayTeamOdd());
+        dest.writeFloat(odds.getDrawOdd());
     }
 }

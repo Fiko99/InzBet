@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Match> listMatches = new ArrayList<>();
         if (matches != null) {
             for (Match m : matches) {
-                if (m.getType() != null) {
+                if (m.getType() != null && m.getOdds() != null) {
                     listMatches.add(m);
                 }
             }

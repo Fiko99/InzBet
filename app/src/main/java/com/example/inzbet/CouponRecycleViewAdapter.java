@@ -33,7 +33,12 @@ public class CouponRecycleViewAdapter extends RecyclerView.Adapter<CouponRecycle
         holder.cHomeTeam.setText(match.getHomeTeam().getName());
         holder.cAwayTeam.setText(match.getAwayTeam().getName());
         holder.type.setText(match.getType());
-        // TODO oddsy
+        if (match.getType().equals("1"))
+            holder.odd.setText(String.format("%.2f", match.getOdds().getHomeTeamOdd()));
+        if (match.getType().equals("X"))
+            holder.odd.setText(String.format("%.2f", match.getOdds().getDrawOdd()));
+        if (match.getType().equals("2"))
+            holder.odd.setText(String.format("%.2f", match.getOdds().getAwayTeamOdd()));
     }
 
     @Override

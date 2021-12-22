@@ -3,8 +3,10 @@ package com.example.inzbet.fragments;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Spanned;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +56,11 @@ public class AccountFragment extends Fragment {
                 previous = Float.parseFloat(accountBalance.getText().toString());
                 sum = 0;
                 sum = sum + previous;
+
+                if (price > 1000000) {
+                    depositValue.setError("Kwota spoza zakresu");
+                    return;
+                }
 
                 accountBalance.setText(Float.toString(price + sum));
                 sharedPreferences = getActivity().getSharedPreferences("prefs", Context.MODE_PRIVATE);
