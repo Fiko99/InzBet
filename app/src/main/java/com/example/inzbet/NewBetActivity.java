@@ -70,8 +70,16 @@ public class NewBetActivity extends AppCompatActivity {
                 }
                 else {
                     win.setText(String.format("%.2f", odd * rateValue * 0.88f));
-                    placeBet.setEnabled(true);
+                    if (rMatches.isEmpty())
+                        placeBet.setEnabled(false);
+                    else
+                        placeBet.setEnabled(true);
                 }
+
+                if (s.toString().length() == 1 && s.toString().startsWith("0")) {
+                    s.clear();
+                }
+
             }
         });
 
@@ -100,7 +108,11 @@ public class NewBetActivity extends AppCompatActivity {
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         this.recyclerView.setAdapter(couponAdapter);
 
-        totalOdd = 1;
+        if (rMatches.isEmpty())
+            totalOdd = 0;
+        else
+            totalOdd = 1;
+
         for (Match m : rMatches) {
             if (m.getType().equals("1")) {
                 totalOdd *= Math.round(m.getOdds().getHomeTeamOdd() * 100) / 100f;
