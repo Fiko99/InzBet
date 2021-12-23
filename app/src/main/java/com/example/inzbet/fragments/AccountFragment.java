@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.inzbet.DecimalDigitsInputFilter;
 import com.example.inzbet.R;
 
 import java.util.regex.Matcher;
@@ -107,24 +108,4 @@ public class AccountFragment extends Fragment {
         number = sharedPreferences.getFloat("number", 0);
         accountBalance.setText(String.valueOf(number));
     }
-
-    public class DecimalDigitsInputFilter implements InputFilter {
-
-        Pattern mPattern;
-
-        public DecimalDigitsInputFilter(int digitsBeforeZero, int digitsAfterZero) {
-            mPattern = Pattern.compile("[0-9]{0," + (digitsBeforeZero - 1) + "}" +
-                    "+((\\.[0-9]{0," + (digitsAfterZero - 1) + "})?)||(\\.)?");
-        }
-
-        @Override
-        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-
-            Matcher matcher = mPattern.matcher(dest);
-            if (!matcher.matches())
-                return "";
-            return null;
-        }
-    }
-
 }

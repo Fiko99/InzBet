@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
                 matches.get(i).setType("1");
             } else if (isTypeForDraw) {
                 matches.get(i).setType("X");
-            } else if (isTypeForAway) {
+            }  else if (isTypeForAway) {
                 matches.get(i).setType("2");
             }
         }
