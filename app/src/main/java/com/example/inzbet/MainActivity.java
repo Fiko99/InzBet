@@ -1,6 +1,8 @@
 package com.example.inzbet;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -129,12 +131,32 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void collectTypeInMatches() {
+        SharedPreferences sharedPreferences = getSharedPreferences("save_home", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences2 = getSharedPreferences("save_draw", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences3 = getSharedPreferences("save_away", Context.MODE_PRIVATE);
+        for (int i = 0; i < matches.size(); i++) {
+            boolean isTypeForHome = sharedPreferences.getBoolean("home_enable" + i, false);
+            boolean isTypeForDraw = sharedPreferences2.getBoolean("draw_enable" + i, false);
+            boolean isTypeForAway = sharedPreferences3.getBoolean("away_enable" + i, false);
+
+            if (isTypeForHome) {
+                matches.get(i).setType("1");
+            } else if (isTypeForDraw) {
+                matches.get(i).setType("X");
+            } else if (isTypeForAway) {
+                matches.get(i).setType("2");
+            }
+        }
+    }
+
     public void openNewBetActivity() {
         Intent intent = new Intent(this, NewBetActivity.class);
         ArrayList<Match> listMatches = new ArrayList<>();
         if (matches != null) {
+            collectTypeInMatches();
             for (Match m : matches) {
-                if (m.getType() != null && m.getOdds() != null) {
+                if (m.getType() != null) {
                     listMatches.add(m);
                 }
             }

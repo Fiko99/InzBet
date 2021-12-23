@@ -64,6 +64,7 @@ public class MatchesFragment extends Fragment {
             } catch (Exception e) {
             }
         }
+
         matchAdapter = new MatchRecyclerViewAdapter(rMatches.matches);
         ref.matches = rMatches.matches;
         this.recyclerView = view.findViewById(R.id.matchRV);

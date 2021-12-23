@@ -63,12 +63,12 @@ public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecycler
             public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
                 if (checkedId == R.id.home_team_bet) {
                     if (holder.homeTeamBet.isChecked()) {
-                        SharedPreferences.Editor editor = context.getSharedPreferences("save_home", Context.MODE_PRIVATE).edit();
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putBoolean("home_enable" + position, true);
                         editor.apply();
                         match.setType("1");
                     } else {
-                        SharedPreferences.Editor editor = context.getSharedPreferences("save_home", Context.MODE_PRIVATE).edit();
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putBoolean("home_enable" + position, false);
                         editor.apply();
                         match.setType(null);
@@ -76,12 +76,12 @@ public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecycler
 
                 } else if (checkedId == R.id.draw_bet) {
                     if (holder.drawBet.isChecked()) {
-                        SharedPreferences.Editor editor = context.getSharedPreferences("save_draw", Context.MODE_PRIVATE).edit();
+                        SharedPreferences.Editor editor = sharedPreferences2.edit();
                         editor.putBoolean("draw_enable" + position, true);
                         editor.apply();
                         match.setType("X");
                     } else {
-                        SharedPreferences.Editor editor = context.getSharedPreferences("save_draw", Context.MODE_PRIVATE).edit();
+                        SharedPreferences.Editor editor = sharedPreferences2.edit();
                         editor.putBoolean("draw_enable" + position, false);
                         editor.apply();
                         match.setType(null);
@@ -89,12 +89,12 @@ public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecycler
 
                 } else if (checkedId == R.id.away_team_bet) {
                     if (holder.awayTeamBet.isChecked()) {
-                        SharedPreferences.Editor editor = context.getSharedPreferences("save_away", Context.MODE_PRIVATE).edit();
+                        SharedPreferences.Editor editor = sharedPreferences3.edit();
                         editor.putBoolean("away_enable" + position, true);
                         editor.apply();
                         match.setType("2");
                     } else {
-                        SharedPreferences.Editor editor = context.getSharedPreferences("save_away", Context.MODE_PRIVATE).edit();
+                        SharedPreferences.Editor editor = sharedPreferences3.edit();
                         editor.putBoolean("away_enable" + position, false);
                         editor.apply();
                         match.setType(null);

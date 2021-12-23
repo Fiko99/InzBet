@@ -3,10 +3,8 @@ package com.example.inzbet.fragments;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Spanned;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +26,7 @@ public class AccountFragment extends Fragment {
     private EditText depositValue;
     private Button deposit, withdraw;
     private TextView accountBalance;
-    SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences;
     private float price, previous, subtraction, sum, amount, number;
 
     @Nullable
@@ -45,7 +43,6 @@ public class AccountFragment extends Fragment {
         deposit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
 
                 if (depositValue.length() <= 0) {
                     depositValue.setError("To pole jest wymagane");

@@ -1,8 +1,5 @@
 package com.example.inzbet.pojo;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 public class Odds {
     private float homeTeamOdd;
     private float awayTeamOdd;
