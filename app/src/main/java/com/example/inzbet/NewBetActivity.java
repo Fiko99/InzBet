@@ -1,5 +1,7 @@
 package com.example.inzbet;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -9,11 +11,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.inzbet.fragments.AccountFragment;
 import com.example.inzbet.pojo.Match;
 
 import java.util.ArrayList;
@@ -27,7 +31,8 @@ public class NewBetActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ArrayList<Match> rMatches;
     private CouponRecyclerViewAdapter couponAdapter;
-    private float totalOdd, odd, rateValue;
+    private float totalOdd, odd, rateValue, accountBalance;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +68,7 @@ public class NewBetActivity extends AppCompatActivity {
                     return;
                 }
 
-                rateValue = Float.parseFloat(rate.getText().toString());
+            rateValue = Float.parseFloat(rate.getText().toString());
 
                 if (rateValue < 1.0f) {
                     rate.setError("Minimalna stawka to 1 zł");
@@ -83,13 +88,14 @@ public class NewBetActivity extends AppCompatActivity {
             }
         });
 
+        sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
+        accountBalance = sharedPreferences.getFloat("number", 0);
+
         placeBet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (rate.length() <= 0) {
-                    rate.setError("Minimalna stawka to złotówka");
-                    return;
-                }
+                if (rateValue > Float.parseFloat(String.valueOf(accountBalance)))
+                    Toast.makeText(getApplicationContext(), "Brak środków na koncie", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -137,5 +143,4 @@ public class NewBetActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
     }
-
 }

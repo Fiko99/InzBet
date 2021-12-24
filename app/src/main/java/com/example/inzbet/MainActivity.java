@@ -27,15 +27,15 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    public FloatingActionButton floatingActionButton;
-    public BottomNavigationView bottomNavigationView;
-    public ImageButton person;
-    public ImageButton cancel;
-    public TextView textView;
-    public AccountFragment accountFragment = new AccountFragment();
-    public HomeFragment homeFragment = new HomeFragment();
-    public MatchesFragment matchesFragment = new MatchesFragment(this);
-    public BetsFragment betsFragment = new BetsFragment();
+    private FloatingActionButton floatingActionButton;
+    private BottomNavigationView bottomNavigationView;
+    private ImageButton person;
+    private ImageButton cancel;
+    private TextView textView;
+    private AccountFragment accountFragment = new AccountFragment();
+    private HomeFragment homeFragment = new HomeFragment();
+    private MatchesFragment matchesFragment = new MatchesFragment(this);
+    private BetsFragment betsFragment = new BetsFragment();
     public List<Match> matches;
 
     @Override

@@ -1,6 +1,8 @@
 package com.example.inzbet.fragments;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputFilter;
@@ -17,6 +19,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.inzbet.DecimalDigitsInputFilter;
+import com.example.inzbet.MainActivity;
+import com.example.inzbet.NewBetActivity;
 import com.example.inzbet.R;
 
 import java.util.regex.Matcher;
@@ -35,7 +39,7 @@ public class AccountFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
 
-        depositValue = (EditText) view.findViewById(R.id.deposit_value);
+        depositValue = view.findViewById(R.id.deposit_value);
         deposit = view.findViewById(R.id.deposit);
         accountBalance = view.findViewById(R.id.account_balance_value);
         withdraw = view.findViewById(R.id.withdraw);
@@ -109,3 +113,5 @@ public class AccountFragment extends Fragment {
         accountBalance.setText(String.valueOf(number));
     }
 }
+
+

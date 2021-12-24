@@ -31,11 +31,11 @@ import java.util.concurrent.TimeoutException;
 
 public class MatchesFragment extends Fragment {
 
-    RecyclerView recyclerView;
-    MatchRecyclerViewAdapter matchAdapter;
-    Root rMatches;
-    RandomOddsGenerator randomOddsGenerator;
-    MainActivity ref;
+    private RecyclerView recyclerView;
+    private MatchRecyclerViewAdapter matchAdapter;
+    private Root rMatches;
+    private RandomOddsGenerator randomOddsGenerator;
+    private MainActivity ref;
 
     public MatchesFragment(MainActivity mainActivity) {
         this.ref = mainActivity;
