@@ -17,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.inzbet.fragments.AccountFragment;
 import com.example.inzbet.pojo.Match;
 
 import java.util.ArrayList;
@@ -32,7 +31,7 @@ public class NewBetActivity extends AppCompatActivity {
     private ArrayList<Match> rMatches;
     private CouponRecyclerViewAdapter couponAdapter;
     private float totalOdd, odd, rateValue, accountBalance;
-    private SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences, prefsValues;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,12 +67,11 @@ public class NewBetActivity extends AppCompatActivity {
                     return;
                 }
 
-            rateValue = Float.parseFloat(rate.getText().toString());
+                rateValue = Float.parseFloat(rate.getText().toString());
 
                 if (rateValue < 1.0f) {
                     rate.setError("Minimalna stawka to 1 zł");
-                }
-                else {
+                } else {
                     win.setText(String.format("%.2f", odd * rateValue * 0.88f));
                     if (rMatches.isEmpty())
                         placeBet.setEnabled(false);
@@ -91,14 +89,32 @@ public class NewBetActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
         accountBalance = sharedPreferences.getFloat("number", 0);
 
+        prefsValues = getSharedPreferences("coupons", Context.MODE_PRIVATE);
+
         placeBet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (rateValue > Float.parseFloat(String.valueOf(accountBalance)))
                     Toast.makeText(getApplicationContext(), "Brak środków na koncie", Toast.LENGTH_LONG).show();
+                else {
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putFloat("number", accountBalance - rateValue);
+                    editor.apply();
+                    rMatches.clear();
+                    couponAdapter.notifyDataSetChanged();
+                    if (rMatches.isEmpty())
+                        placeBet.setEnabled(false);
+
+                    int lastCouponId = prefsValues.getInt("lastCouponId", -1);
+                    SharedPreferences.Editor editor1 = prefsValues.edit();
+                    editor1.putFloat("odd" + lastCouponId, odd);
+                    editor1.putFloat("win" + lastCouponId, Float.parseFloat(win.getText().toString()));
+                    editor1.putFloat("rate" + lastCouponId, rateValue);
+                    editor1.putInt("lastCouponId", lastCouponId + 1);
+                    editor1.apply();
+                }
             }
         });
-
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override

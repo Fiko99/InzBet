@@ -51,6 +51,12 @@ public class MainActivity extends AppCompatActivity {
 
         cancel.setVisibility(View.GONE);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("coupons", Context.MODE_PRIVATE);
+        int lastCouponId = sharedPreferences.getInt("lastCouponId", -1);
+        if (lastCouponId == -1) {
+            sharedPreferences.edit().putInt("lastCouponId", 0).apply();
+        }
+
         person.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -144,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                 matches.get(i).setType("1");
             } else if (isTypeForDraw) {
                 matches.get(i).setType("X");
-            }  else if (isTypeForAway) {
+            } else if (isTypeForAway) {
                 matches.get(i).setType("2");
             }
         }

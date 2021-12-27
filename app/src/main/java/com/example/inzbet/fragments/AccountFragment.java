@@ -1,12 +1,9 @@
 package com.example.inzbet.fragments;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputFilter;
-import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,12 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.inzbet.DecimalDigitsInputFilter;
-import com.example.inzbet.MainActivity;
-import com.example.inzbet.NewBetActivity;
 import com.example.inzbet.R;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class AccountFragment extends Fragment {
 
