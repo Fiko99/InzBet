@@ -1,5 +1,6 @@
 package com.example.inzbet;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ public class NewBetActivity extends AppCompatActivity {
     private float totalOdd, odd, rateValue, accountBalance;
     private SharedPreferences sharedPreferences, prefsValues;
 
+    @SuppressLint("DefaultLocale")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +74,7 @@ public class NewBetActivity extends AppCompatActivity {
                 if (rateValue < 1.0f) {
                     rate.setError("Minimalna stawka to 1 zł");
                 } else {
-                    win.setText(String.format("%.2f", odd * rateValue * 0.88f));
+                    win.setText(String.valueOf(Math.round((odd * rateValue * 0.88f) * 100) / 100f));
                     placeBet.setEnabled(!rMatches.isEmpty());
                 }
 
@@ -143,7 +145,7 @@ public class NewBetActivity extends AppCompatActivity {
                 totalOdd *= Math.round(m.getOdds().getAwayTeamOdd() * 100) / 100f;
             }
         }
-        oddsSum.setText(String.format("%.2f", totalOdd));
+        oddsSum.setText(String.valueOf(Math.round(totalOdd * 100) / 100f));
         odd = Float.parseFloat(oddsSum.getText().toString());
     }
 

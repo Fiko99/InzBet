@@ -84,7 +84,7 @@ public class AccountFragment extends Fragment {
                     return;
                 }
 
-                accountBalance.setText(Float.toString(Float.parseFloat(String.format("%.2f", subtraction))));
+                accountBalance.setText(Float.toString(Float.parseFloat(String.valueOf(Math.round(subtraction * 100) / 100f))));
                 sharedPreferences = getActivity().getSharedPreferences("prefs", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putFloat("number", Float.parseFloat((accountBalance.getText().toString())));

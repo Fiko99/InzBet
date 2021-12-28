@@ -1,5 +1,6 @@
 package com.example.inzbet;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ public class CouponRecyclerViewAdapter extends RecyclerView.Adapter<CouponRecycl
         return new ViewHolder(view);
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public void onBindViewHolder(@NonNull CouponRecyclerViewAdapter.ViewHolder holder, int position) {
         Match match = matchList.get(position);

@@ -34,6 +34,7 @@ public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecycler
         return new ViewHolder(view);
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Context context = holder.itemView.getContext();
