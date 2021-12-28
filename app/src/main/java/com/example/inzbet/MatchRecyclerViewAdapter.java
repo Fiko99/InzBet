@@ -20,10 +20,10 @@ import java.util.List;
 import java.util.Locale;
 
 public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecyclerViewAdapter.ViewHolder> {
-    List<Match> MatchList;
+    List<Match> matchList;
 
     public MatchRecyclerViewAdapter(List<Match> matchesList) {
-        this.MatchList = matchesList;
+        this.matchList = matchesList;
     }
 
     @NonNull
@@ -37,7 +37,7 @@ public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecycler
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Context context = holder.itemView.getContext();
-        Match match = MatchList.get(position);
+        Match match = matchList.get(position);
         holder.homeTeam.setText(match.getHomeTeam().getName());
         holder.time.setText(new SimpleDateFormat("dd.MM\nHH:mm", Locale.getDefault()).format(match.getUtcDate()));
         holder.awayTeam.setText(match.getAwayTeam().getName());
@@ -105,7 +105,7 @@ public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecycler
     }
 
     public void checkTypeInMatches(@NonNull ViewHolder holder, int position) {
-        Match m = MatchList.get(position);
+        Match m = matchList.get(position);
         if (holder.homeTeamBet.isChecked()) {
             m.setType("1");
         } else if (holder.drawBet.isChecked()) {
@@ -129,7 +129,7 @@ public class MatchRecyclerViewAdapter extends RecyclerView.Adapter<MatchRecycler
 
     @Override
     public int getItemCount() {
-        return MatchList.size();
+        return matchList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

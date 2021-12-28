@@ -13,10 +13,10 @@ import com.example.inzbet.pojo.Match;
 import java.util.List;
 
 public class CouponRecyclerViewAdapter extends RecyclerView.Adapter<CouponRecyclerViewAdapter.ViewHolder> {
-    List<Match> MatchList;
+    List<Match> matchList;
 
     public CouponRecyclerViewAdapter(List<Match> matchList) {
-        this.MatchList = matchList;
+        this.matchList = matchList;
     }
 
     @NonNull
@@ -29,7 +29,7 @@ public class CouponRecyclerViewAdapter extends RecyclerView.Adapter<CouponRecycl
 
     @Override
     public void onBindViewHolder(@NonNull CouponRecyclerViewAdapter.ViewHolder holder, int position) {
-        Match match = MatchList.get(position);
+        Match match = matchList.get(position);
         holder.cHomeTeam.setText(match.getHomeTeam().getName());
         holder.cAwayTeam.setText(match.getAwayTeam().getName());
         holder.type.setText(match.getType());
@@ -54,7 +54,7 @@ public class CouponRecyclerViewAdapter extends RecyclerView.Adapter<CouponRecycl
 
     @Override
     public int getItemCount() {
-        return MatchList.size();
+        return matchList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
