@@ -32,10 +32,10 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton person;
     private ImageButton cancel;
     private TextView textView;
-    private AccountFragment accountFragment = new AccountFragment();
-    private HomeFragment homeFragment = new HomeFragment();
-    private MatchesFragment matchesFragment = new MatchesFragment(this);
-    private BetsFragment betsFragment = new BetsFragment();
+    private final AccountFragment accountFragment = new AccountFragment();
+    private final HomeFragment homeFragment = new HomeFragment();
+    private final MatchesFragment matchesFragment = new MatchesFragment(this);
+    private final BetsFragment betsFragment = new BetsFragment();
     public List<Match> matches;
 
     @Override
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // obsługa BottomNavigationView
-    private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =
+    private final BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {

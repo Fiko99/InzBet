@@ -35,7 +35,7 @@ public class MatchesFragment extends Fragment {
     private MatchRecyclerViewAdapter matchAdapter;
     private Root rMatches;
     private RandomOddsGenerator randomOddsGenerator;
-    private MainActivity ref;
+    private final MainActivity ref;
 
     public MatchesFragment(MainActivity mainActivity) {
         this.ref = mainActivity;

@@ -73,10 +73,7 @@ public class NewBetActivity extends AppCompatActivity {
                     rate.setError("Minimalna stawka to 1 zł");
                 } else {
                     win.setText(String.format("%.2f", odd * rateValue * 0.88f));
-                    if (rMatches.isEmpty())
-                        placeBet.setEnabled(false);
-                    else
-                        placeBet.setEnabled(true);
+                    placeBet.setEnabled(!rMatches.isEmpty());
                 }
 
                 if (s.toString().length() == 1 && s.toString().startsWith("0")) {

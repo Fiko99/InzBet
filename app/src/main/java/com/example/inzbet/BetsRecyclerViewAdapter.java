@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class BetsRecyclerViewAdapter extends RecyclerView.Adapter<BetsRecyclerViewAdapter.ViewHolder> {
-    private SharedPreferences sharedPreferences;
-    private int size;
+    private final SharedPreferences sharedPreferences;
+    private final int size;
 
     public BetsRecyclerViewAdapter(SharedPreferences sharedPreferences, int size) {
         this.sharedPreferences = sharedPreferences;
