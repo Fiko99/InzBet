@@ -69,7 +69,11 @@ public class NewBetActivity extends AppCompatActivity {
                     return;
                 }
 
-                rateValue = Float.parseFloat(rate.getText().toString());
+                try {
+                    rateValue = Float.parseFloat(rate.getText().toString());
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
 
                 if (rateValue < 1.0f) {
                     rate.setError("Minimalna stawka to 1 zł");
@@ -81,7 +85,6 @@ public class NewBetActivity extends AppCompatActivity {
                 if (s.toString().length() == 1 && s.toString().startsWith("0")) {
                     s.clear();
                 }
-
             }
         });
 

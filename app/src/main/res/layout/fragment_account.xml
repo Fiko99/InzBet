@@ -53,6 +53,7 @@
         android:layout_width="257dp"
         android:layout_height="58dp"
         android:hint="XX"
+        android:digits="0123456789."
         android:inputType="numberDecimal"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
